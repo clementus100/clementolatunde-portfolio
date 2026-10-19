@@ -254,3 +254,110 @@ html{scroll-padding-top:70px}
 .process li{justify-content:flex-start;align-items:flex-start}
 .process li > span:first-child{flex:0 0 8.6em}
 .process li > span:last-child{flex:1 1 auto}
+
+/* ===== blue gradient theme (Oct 2026): page flows from ice blue at the top to navy at the bottom ===== */
+:root{
+  --accent:#0a84ff; --accent-text:#0a53ad; --navy:#071a3d; --navy-2:#0b2a66; --navy-3:#061a44;
+  --ice:#eaf4ff; --sky:#d4e6ff; --mid:#a6cbf8; --mid-2:#5c97e6; --deep:#2a5fc4; --deep-2:#163f9e;
+  --card:rgba(255,255,255,.88); --card-line:rgba(20,82,196,.22); --card-shadow:0 10px 30px rgba(7,26,61,.16);
+  --bg:#eaf4ff; --alt:#edf4ff; --blue-soft:#e3efff; --red:#0a84ff; --line:#c9dbf7;
+}
+html{background:#061a44}
+body{background:linear-gradient(180deg,#eaf4ff 0%,#d4e6ff 18%,#a6cbf8 38%,#5c97e6 58%,#163f9e 80%,#061a44 100%)}
+.skip{background:#fff;color:var(--navy)}
+a:focus-visible,.btn:focus-visible{outline-color:var(--accent)}
+.section-dark a:focus-visible,.contact a:focus-visible{outline-color:#fff}
+
+/* nav: frosted ice, blue hairline */
+.topbar{background:rgba(234,244,255,.82);border-bottom:1px solid rgba(20,82,196,.18);box-shadow:0 2px 14px rgba(7,26,61,.06)}
+.brand span{color:var(--accent-text)}
+.nav ul a{color:#2a3d63}
+.nav ul a:hover,.nav ul a.is-active{color:#0b3a8c;background:rgba(10,132,255,.14)}
+.scroll-progress{background:linear-gradient(90deg,#0a84ff,#0b3a8c)}
+
+/* hero: ice → sky with two glows */
+.hero{background:
+  radial-gradient(ellipse 70% 55% at 85% 20%,rgba(10,132,255,.20),rgba(10,132,255,0) 60%),
+  radial-gradient(ellipse 60% 50% at 10% 85%,rgba(56,189,248,.26),rgba(56,189,248,0) 62%),
+  linear-gradient(180deg,#eaf4ff 0%,#d4e6ff 100%)}
+.hero::before{background:radial-gradient(circle at center,rgba(20,82,196,.22),rgba(20,82,196,0) 68%)}
+.hero::after{background:radial-gradient(circle at center,rgba(14,165,233,.22),rgba(14,165,233,0) 66%)}
+.kicker{color:var(--accent-text)}
+h1{color:var(--navy-2)}
+.role{color:var(--navy)}
+.lede{color:#2f4470}
+.hero-photo img{border-color:rgba(255,255,255,.9);box-shadow:0 14px 40px rgba(11,58,140,.28)}
+.facts li{background:var(--card);border:1px solid var(--card-line);box-shadow:var(--card-shadow);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.facts strong{color:var(--navy-2)}
+.facts strong::after{background:linear-gradient(90deg,#0a84ff,#38bdf8)}
+.facts span{color:#3b4e73}
+
+/* buttons: one blue system */
+.btn-primary{background:linear-gradient(135deg,#1a5fe0,#0b3a8c);color:#fff;box-shadow:0 6px 18px rgba(11,58,140,.28)}
+.btn-primary:hover{background:linear-gradient(135deg,#1452c4,#082b6a)}
+.btn-ghost{background:rgba(255,255,255,.72);color:#0b3a8c;border:2px solid #1452c4;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.btn-ghost:hover{background:#0b3a8c;color:#fff;border-color:#0b3a8c}
+@media (hover:hover){
+  .btn-primary:hover{box-shadow:0 10px 24px rgba(11,58,140,.36)}
+}
+
+/* sections: sky → mid (programmes), mid → mid-2 (ux), deep → deep-2 (skills) */
+.section{position:relative}
+#programmes{background:
+  radial-gradient(ellipse 55% 40% at 95% 10%,rgba(255,255,255,.55),rgba(255,255,255,0) 60%),
+  radial-gradient(ellipse 50% 45% at 0% 100%,rgba(10,132,255,.18),rgba(10,132,255,0) 60%),
+  linear-gradient(180deg,#d4e6ff 0%,#a6cbf8 100%)}
+#ux,.section-alt{background:
+  radial-gradient(ellipse 60% 40% at 100% 0%,rgba(255,255,255,.35),rgba(255,255,255,0) 60%),
+  radial-gradient(ellipse 55% 45% at 5% 95%,rgba(11,42,102,.30),rgba(11,42,102,0) 62%),
+  linear-gradient(180deg,#a6cbf8 0%,#5c97e6 100%)}
+#skills{background:
+  radial-gradient(ellipse 60% 40% at 90% 5%,rgba(56,189,248,.30),rgba(56,189,248,0) 60%),
+  radial-gradient(ellipse 55% 45% at 0% 100%,rgba(3,10,40,.35),rgba(3,10,40,0) 62%),
+  linear-gradient(180deg,#2457bd 0%,#163f9e 100%)}
+.eyebrow{color:var(--accent-text)}
+#ux .eyebrow,#ux h2{color:var(--navy-2)}
+#ux .section-intro{color:var(--navy)}
+#programmes .section-intro{color:#2f4470}
+#skills .eyebrow{color:#fff}
+#skills h2{color:#fff}
+
+/* cards and panels: frosted white, blue-tinted borders and shadows */
+.case,.ux-card,.panel,.cs-card{background:var(--card);border:1px solid var(--card-line);box-shadow:var(--card-shadow);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.case,.ux-card,.cs-card{border-top:5px solid var(--accent)}
+.case-head{border-right-color:rgba(20,82,196,.16)}
+.tag,.cs-tags li,.chips li{background:#e3efff;color:#0b3a8c}
+.case-grid dt{color:#0b3a8c}
+.case-grid dd{color:#1a2a4d}
+.case-grid div:last-child{background:linear-gradient(135deg,#e3efff,#cfe3ff)}
+.num{color:var(--accent-text)}
+.partner,.cs-kicker,.ux-body .eyebrow{color:#3b4e73}
+.ux-cover,.ux-card > img,.ux-cover > img,.cs-cover img{border-bottom-color:rgba(20,82,196,.16)}
+.process li{background:#edf4ff}
+.process li > span:first-child{color:#0b3a8c}
+.process li > span:first-child::before{color:var(--accent-text)}
+.todo{color:#56678a}
+.panel h3{color:#0b3a8c}
+.certs li{border-left-color:var(--accent)}
+.timeline li{border-left-color:#0b3a8c}
+.certs span,.timeline span{color:#3b4e73}
+@media (hover:hover){
+  .cs-card:hover,.case:hover,.ux-card:hover,.panel:hover{box-shadow:0 20px 44px rgba(7,26,61,.26)}
+  .facts li:hover{box-shadow:0 14px 30px rgba(7,26,61,.22)}
+  .chips li:hover{background:#0b3a8c;color:#fff}
+}
+
+/* contact and footer: deep navy, white text */
+.contact{background:
+  radial-gradient(ellipse 60% 50% at 90% 0%,rgba(10,132,255,.35),rgba(10,132,255,0) 60%),
+  radial-gradient(ellipse 50% 40% at 5% 100%,rgba(56,189,248,.14),rgba(56,189,248,0) 60%),
+  linear-gradient(180deg,#0b2a66 0%,#061a44 100%)}
+.contact h2{color:#fff}
+.contact p{color:#d6e2fb}
+.btn-light{background:#fff;color:#0b3a8c}
+.btn-outline-light{border-color:rgba(255,255,255,.85);color:#fff;background:rgba(255,255,255,.06)}
+.btn-outline-light:hover{background:#fff;color:#0b3a8c}
+.footer{background:linear-gradient(180deg,#061a44,#040f2b);color:#b9cdf3;border-top:1px solid rgba(255,255,255,.08)}
+
+/* reduced motion: the frosted blur is static, nothing here moves */
+@media (prefers-reduced-motion:reduce){.scroll-progress{display:none}}
