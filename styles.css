@@ -67,7 +67,7 @@ h1{font-size:clamp(2.3rem,8vw,3.8rem);color:var(--blue);font-weight:800}
 /* ux cards */
 .ux-grid{display:grid;gap:18px}
 .ux-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column}
-.ux-card > img{aspect-ratio:3/2;width:100%;object-fit:cover;border-bottom:1px solid var(--line)}
+.ux-card > img,.ux-cover > img{display:block;aspect-ratio:3/2;width:100%;object-fit:cover;border-bottom:1px solid var(--line)}
 .frame{aspect-ratio:3/2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
   background:repeating-linear-gradient(135deg,#f1f5fc 0 14px,#e9eff9 14px 28px);border-bottom:1px solid var(--line)}
 .frame-mark{width:46px;height:46px;border:2px dashed #9fb4da;border-radius:12px;position:relative}
@@ -172,9 +172,46 @@ html{scroll-padding-top:70px}
 .facts li:nth-child(3){animation-delay:.75s}
 .facts li:nth-child(4){animation-delay:.85s}
 
-/* scroll reveal: hidden only once JS has run (html.js), so content stays visible if JS fails */
-.js .reveal{opacity:0}
-.js .reveal.is-in{opacity:1;animation:rise .65s cubic-bezier(.2,.7,.2,1) backwards;animation-delay:var(--d,0ms)}
+/* scroll reveal, both directions: hidden only once JS has run (html.js), so content stays visible if JS fails.
+   Elements slide from --dy (JS sets +/- depending on which edge they left through) and fade back out when they leave;
+   `translate` is used so the hover/tap `transform` on cards keeps working. */
+.js .reveal{opacity:0;translate:0 var(--dy,26px);transition:opacity .45s ease-out,translate .5s cubic-bezier(.2,.7,.2,1),transform .28s cubic-bezier(.2,.7,.2,1),box-shadow .28s;transition-delay:0s,0s,0s,0s}
+.js .reveal.is-in{opacity:1;translate:0 0;transition-duration:.6s,.7s,.28s,.28s;transition-delay:var(--d,0ms),var(--d,0ms),0s,0s}
+.js .hero .reveal{transition-duration:.5s,.6s,.28s,.28s}
+
+/* hero parallax (JS sets the custom properties from scroll position in rAF; translate keeps the drift animation's transform intact) */
+.hero::before{translate:0 var(--pa,0px)}
+.hero::after{translate:0 var(--pb,0px)}
+.hero-photo{translate:0 var(--pp,0px);will-change:translate}
+
+/* scroll progress bar (inserted by JS) */
+.scroll-progress{position:fixed;left:0;top:0;height:3px;width:100%;z-index:60;background:var(--blue);transform-origin:0 50%;transform:scaleX(0);pointer-events:none;will-change:transform}
+
+/* motion thumbnails on the two UX case-study cards: real app screens cycling in three floating phones.
+   The static cover stays underneath (and is all that shows with JS off or reduced motion). */
+.ux-cover{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.ux-cover > img{border-bottom:0}
+.thumb{display:none;position:absolute;inset:0;opacity:0;transition:opacity .8s ease}
+.js .thumb{display:block}
+.js .thumb.is-on{opacity:1}
+.thumb-calmly{background:radial-gradient(ellipse at 20% 10%,rgba(255,214,102,.45),rgba(255,214,102,0) 55%),linear-gradient(135deg,#efebe2,#dfe4dd)}
+.thumb-stepwise{background:radial-gradient(ellipse at 85% 15%,rgba(255,255,255,.18),rgba(255,255,255,0) 50%),linear-gradient(135deg,#0b2a5b,#1f5bd1)}
+.thumb-phone{position:absolute;aspect-ratio:300/650;border-radius:9% / 4.2%;overflow:hidden;background:#0b1a33;border:3px solid #0b1a33;box-shadow:0 18px 40px rgba(11,42,91,.35);will-change:transform;animation:float 6s ease-in-out infinite alternate;transform:translateZ(0)}
+.thumb-calmly .thumb-phone{background:#17201d;border-color:#17201d;box-shadow:0 18px 40px rgba(23,32,29,.28)}
+.thumb-a{left:37%;top:9%;width:26%;z-index:2}
+.thumb-b{left:8%;top:17%;width:22%;animation-delay:-2s;animation-duration:7s}
+.thumb-c{left:70%;top:14%;width:22%;animation-delay:-4s;animation-duration:6.5s}
+.thumb-phone img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.02);will-change:opacity,transform;animation-timing-function:ease-in-out;animation-iteration-count:infinite;animation-fill-mode:both}
+.thumb-n4 img{animation-name:cycle4;animation-duration:10s}
+.thumb-n3 img{animation-name:cycle3;animation-duration:7.5s}
+.thumb-phone img:nth-child(1){animation-delay:0s}
+.thumb-phone img:nth-child(2){animation-delay:2.5s}
+.thumb-phone img:nth-child(3){animation-delay:5s}
+.thumb-phone img:nth-child(4){animation-delay:7.5s}
+.thumb:not(.is-on) *,.thumb:not(.is-on){animation-play-state:paused}
+@keyframes float{from{transform:translate3d(0,-4px,0)}to{transform:translate3d(0,5px,0)}}
+@keyframes cycle4{0%{opacity:0;transform:scale(1.08) translateY(6px)}6%{opacity:1;transform:scale(1.02) translateY(0)}25%{opacity:1;transform:scale(1.02) translateY(0)}31%{opacity:0;transform:scale(1.02) translateY(-5px)}100%{opacity:0;transform:scale(1.02) translateY(-5px)}}
+@keyframes cycle3{0%{opacity:0;transform:scale(1.08) translateY(6px)}8%{opacity:1;transform:scale(1.02) translateY(0)}33.3%{opacity:1;transform:scale(1.02) translateY(0)}41.3%{opacity:0;transform:scale(1.02) translateY(-5px)}100%{opacity:0;transform:scale(1.02) translateY(-5px)}}
 
 /* nav: active section */
 .nav ul a{transition:background .2s,color .2s}
@@ -204,8 +241,10 @@ html{scroll-padding-top:70px}
 /* reduced motion: everything visible, nothing moves */
 @media (prefers-reduced-motion:reduce){
   .hero::before,.hero::after,.hero .kicker,.hero h1,.hero .role,.hero .lede,.hero .cta,.hero-photo,.facts li,.sw-meta,.sw-note{animation:none}
-  .js .reveal{opacity:1}
-  .js .reveal.is-in{animation:none}
+  .js .reveal,.js .reveal.is-in{opacity:1;translate:0 0;transition:none}
+  .hero::before,.hero::after,.hero-photo{translate:0 0}
+  .scroll-progress{display:none}
+  .thumb,.js .thumb{display:none}
   .btn,.cs-card,.case,.ux-card,.panel,.facts li,.sw-board,.cs-cover img,.sw-board a img,.chips li,.nav ul a{transition:none}
   .btn:hover,.btn:active,.cs-card:hover,.case:hover,.ux-card:hover,.panel:hover,.facts li:hover,.sw-board:hover,.cs-card:active,.case:active,.ux-card:active,.sw-board:active{transform:none}
   .cs-card:hover .cs-cover img,.sw-board a:hover img{transform:none}
