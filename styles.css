@@ -414,6 +414,28 @@ h1{color:#bfe3ff;background:linear-gradient(100deg,#ffffff 0%,#dbeeff 40%,#7dd3f
 @keyframes aurora-drift{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(-36px,28px,0) scale(1.05)}}
 @media (max-width:859px){.aurora-a{width:175vw;right:-62%;top:-34%;opacity:.32;filter:blur(16px)}.aurora-b{display:none}#ux::before{right:-95%;top:-10%;opacity:.16;filter:blur(18px)}}
 
+/* 6b. halo (v3, his change 20 Oct 7:54 AM: "a definite sphere, it's too wide"): the wide rainbow haze in the hero is gone.
+   A contained luminous blue orb sits centred behind the photo at 1.24x its diameter (sky-blue core, deeper blue toward the
+   limb, a highlight top-left and a darker lower-right so it reads as a sphere, a 1px light rim, a 2px blur for a crisp-but-soft
+   edge) plus a faint bloom that ends within 1.4x the photo (1.3x under 860px so the wrap padding does not clip it). Both ride
+   .hero-photo, so they follow the photo's parallax and rise. The UX section's soft halo (#ux::before) is unchanged. */
+.hero .aurora{display:none}
+.hero-photo{position:relative}
+.hero-photo::before,.hero-photo::after{content:"";position:absolute;z-index:-1;pointer-events:none;border-radius:50%;aspect-ratio:1;left:50%;top:50%;translate:-50% -50%;will-change:transform,opacity}
+.hero-photo::before{width:124%;
+  background:
+    radial-gradient(circle at 34% 30%,rgba(255,255,255,.72) 0%,rgba(224,242,254,.42) 9%,rgba(186,230,253,.12) 20%,rgba(186,230,253,0) 32%),
+    radial-gradient(circle closest-side at 50% 50%,#a9e3ff 0%,#5fbdf7 34%,#2b8fe7 62%,#1561c8 84%,#0e49a6 100%);
+  box-shadow:inset -16px -22px 46px rgba(3,14,48,.68),inset 10px 12px 30px rgba(224,242,254,.22),inset 0 0 0 1px rgba(186,230,253,.6),0 0 8px 1px rgba(125,211,252,.5);
+  filter:blur(2px);
+  animation:orb-pulse 7s ease-in-out infinite alternate}
+.hero-photo::after{width:140%;opacity:.9;
+  background:radial-gradient(circle closest-side at 50% 50%,rgba(56,189,248,.34) 0%,rgba(56,189,248,.26) 72%,rgba(56,189,248,.10) 86%,rgba(56,189,248,0) 100%);
+  animation:orb-bloom 7s ease-in-out infinite alternate}
+@media (max-width:859px){.hero-photo::after{width:130%}}
+@keyframes orb-pulse{from{transform:scale(1);filter:blur(2px) brightness(1)}to{transform:scale(1.025);filter:blur(2px) brightness(1.07)}}
+@keyframes orb-bloom{from{opacity:.7}to{opacity:1}}
+
 /* 3. impact strip: a full-width luminous band under the hero, numbers count up when it scrolls into view */
 .impact{position:relative;padding:22px 0;background:
   radial-gradient(ellipse 60% 100% at 50% 50%,rgba(56,189,248,.16),rgba(56,189,248,0) 70%),
@@ -510,6 +532,7 @@ h1{color:#bfe3ff;background:linear-gradient(100deg,#ffffff 0%,#dbeeff 40%,#7dd3f
 /* reduced motion: the halo is static, reels and swaps do not animate (the video element stays paused; JS does not play it) */
 @media (prefers-reduced-motion:reduce){
   .aurora span,#ux::before{animation:none;transform:none}
+  .hero-photo::before,.hero-photo::after{animation:none;transform:none;opacity:1}
   .ux-cover .reel{transition:none}
   .ph-screen,.channel,.gal-chip,.gal-arrow,.proto-dots i{transition:none}
   .ph:hover .ph-screen,.channel:hover{transform:none}
