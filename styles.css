@@ -695,3 +695,55 @@ h1 em,h2 em,h3 em{font-style:italic;font-weight:inherit}
 /* five nav links now (Motion added): tighter on narrow phones so the bar never scrolls sideways */
 @media (max-width:420px){.nav ul{gap:0}.nav ul a{padding:8px 3px;font-size:.76rem}}
 @media (max-width:359px){.nav ul a{padding:8px 2px;font-size:.7rem}.brand{font-size:1.15rem}}
+
+/* ===== night-sky background (20 Oct 2026, his reference photo: "make the background of the portfolio like this… ensure it
+   blends with the lettering and details"). Recreated in CSS only — no image of his reference, no AI asset: three fixed
+   layers behind every section (position:fixed pseudo-elements, never background-attachment:fixed, so iOS scrolls clean).
+   body::before = the sky: deep navy up top with a fine star field (an inline SVG tile) and one large faint ring
+   (a radial-gradient circle) in the upper middle. main::before = blue mist/nebula bands across the middle plus a sparse
+   twinkle star tile, drifting very slowly. body::after = the lower "dunes": royal-blue wave bands with a fine sand grain
+   (img/bg-grain.png, a 23 KB tiled speck texture) and a few glitter points, fading in from mid-screen.
+   The sections drop their own opaque navy gradients so the scene shows through; each text-heavy section keeps a soft
+   navy scrim (and glass cards keep their blur) so body copy stays AA over the brightest dune. The hero is clear, so the
+   contained blue sphere behind his photo sits in the sky like a moon over the dunes. Motion is transform/opacity only
+   on one layer and stops under prefers-reduced-motion. Lettering, cards, buttons and nav are unchanged. ===== */
+:root{--sky-stars:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320'%3E%3Ccircle cx='76.1' cy='174.2' r='1.0' fill='%23dfeaff' fill-opacity='0.9'/%3E%3Ccircle cx='151.7' cy='185.9' r='0.5' fill='%23dfeaff' fill-opacity='0.9'/%3E%3Ccircle cx='150.2' cy='176.3' r='0.8' fill='%23dfeaff' fill-opacity='0.95'/%3E%3Ccircle cx='150.5' cy='267.7' r='1.3' fill='%23dfeaff' fill-opacity='0.59'/%3E%3Ccircle cx='275.5' cy='74.2' r='0.7' fill='%23dfeaff' fill-opacity='0.87'/%3E%3Ccircle cx='167.4' cy='237.2' r='0.6' fill='%23dfeaff' fill-opacity='0.45'/%3E%3Ccircle cx='306.4' cy='13.7' r='0.5' fill='%23dfeaff' fill-opacity='0.84'/%3E%3Ccircle cx='86.2' cy='190.3' r='1.1' fill='%23dfeaff' fill-opacity='0.78'/%3E%3Ccircle cx='294.8' cy='126.4' r='1.3' fill='%23dfeaff' fill-opacity='0.93'/%3E%3Ccircle cx='42.9' cy='117.0' r='0.5' fill='%23dfeaff' fill-opacity='0.43'/%3E%3Ccircle cx='69.4' cy='309.0' r='1.1' fill='%23dfeaff' fill-opacity='0.82'/%3E%3Ccircle cx='273.7' cy='134.8' r='1.1' fill='%23dfeaff' fill-opacity='0.69'/%3E%3Ccircle cx='170.9' cy='130.4' r='0.8' fill='%23dfeaff' fill-opacity='0.89'/%3E%3Ccircle cx='218.2' cy='297.3' r='0.9' fill='%23dfeaff' fill-opacity='0.94'/%3E%3Ccircle cx='214.8' cy='52.2' r='1.0' fill='%23dfeaff' fill-opacity='0.93'/%3E%3Ccircle cx='289.5' cy='182.1' r='0.8' fill='%23dfeaff' fill-opacity='0.73'/%3E%3Ccircle cx='316.2' cy='85.5' r='0.6' fill='%23dfeaff' fill-opacity='0.39'/%3E%3Ccircle cx='273.3' cy='316.7' r='0.6' fill='%23dfeaff' fill-opacity='0.56'/%3E%3Ccircle cx='21.3' cy='287.1' r='0.5' fill='%23dfeaff' fill-opacity='0.53'/%3E%3Ccircle cx='246.0' cy='279.3' r='0.5' fill='%23dfeaff' fill-opacity='0.71'/%3E%3Ccircle cx='243.7' cy='120.9' r='1.0' fill='%23dfeaff' fill-opacity='0.68'/%3E%3Ccircle cx='295.0' cy='89.3' r='0.8' fill='%23dfeaff' fill-opacity='0.95'/%3E%3Ccircle cx='99.1' cy='24.6' r='0.5' fill='%23dfeaff' fill-opacity='0.92'/%3E%3Ccircle cx='310.9' cy='93.3' r='0.9' fill='%23dfeaff' fill-opacity='0.44'/%3E%3Ccircle cx='13.6' cy='277.7' r='1.0' fill='%23dfeaff' fill-opacity='0.57'/%3E%3Ccircle cx='44.3' cy='275.7' r='1.1' fill='%23dfeaff' fill-opacity='0.63'/%3E%3Ccircle cx='166.4' cy='206.0' r='0.6' fill='%23dfeaff' fill-opacity='0.72'/%3E%3Ccircle cx='301.0' cy='162.2' r='1.1' fill='%23dfeaff' fill-opacity='0.73'/%3E%3Ccircle cx='229.0' cy='299.7' r='1.1' fill='%23dfeaff' fill-opacity='0.94'/%3E%3Ccircle cx='166.8' cy='175.5' r='0.5' fill='%23dfeaff' fill-opacity='0.82'/%3E%3Ccircle cx='316.0' cy='100.8' r='1.1' fill='%23dfeaff' fill-opacity='0.72'/%3E%3Ccircle cx='202.3' cy='19.2' r='1.0' fill='%23dfeaff' fill-opacity='0.63'/%3E%3Ccircle cx='217.4' cy='112.8' r='0.9' fill='%23dfeaff' fill-opacity='0.79'/%3E%3Ccircle cx='7.1' cy='19.4' r='0.5' fill='%23dfeaff' fill-opacity='0.93'/%3E%3Ccircle cx='80.4' cy='146.0' r='1.0' fill='%23dfeaff' fill-opacity='0.46'/%3E%3Ccircle cx='59.3' cy='242.6' r='0.9' fill='%23dfeaff' fill-opacity='0.53'/%3E%3Ccircle cx='120.7' cy='247.1' r='0.5' fill='%23dfeaff' fill-opacity='0.93'/%3E%3Ccircle cx='218.8' cy='42.1' r='0.8' fill='%23dfeaff' fill-opacity='0.74'/%3E%3Ccircle cx='86.2' cy='104.9' r='1.1' fill='%23dfeaff' fill-opacity='0.74'/%3E%3Ccircle cx='31.0' cy='192.2' r='1.0' fill='%23dfeaff' fill-opacity='0.75'/%3E%3Ccircle cx='71.8' cy='259.1' r='0.7' fill='%23dfeaff' fill-opacity='0.4'/%3E%3Ccircle cx='237.5' cy='69.8' r='1.3' fill='%23dfeaff' fill-opacity='0.51'/%3E%3Ccircle cx='251.8' cy='10.9' r='0.8' fill='%23dfeaff' fill-opacity='0.54'/%3E%3Ccircle cx='267.6' cy='183.9' r='0.9' fill='%23dfeaff' fill-opacity='0.55'/%3E%3Ccircle cx='264.9' cy='27.4' r='1.0' fill='%23dfeaff' fill-opacity='0.7'/%3E%3Ccircle cx='134.8' cy='165.9' r='0.9' fill='%23dfeaff' fill-opacity='0.63'/%3E%3C/svg%3E");--sky-twinkle:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320'%3E%3Ccircle cx='144.8' cy='179.1' r='1.0' fill='%23ffffff' fill-opacity='.85'/%3E%3Ccircle cx='144.8' cy='179.1' r='3.0' fill='%239ec5ff' fill-opacity='.12'/%3E%3Ccircle cx='144.6' cy='273.6' r='0.9' fill='%23ffffff' fill-opacity='.85'/%3E%3Ccircle cx='144.6' cy='273.6' r='2.7' fill='%239ec5ff' fill-opacity='.12'/%3E%3Ccircle cx='59.1' cy='163.8' r='1.2' fill='%23ffffff' fill-opacity='.85'/%3E%3Ccircle cx='59.1' cy='163.8' r='3.5999999999999996' fill='%239ec5ff' fill-opacity='.12'/%3E%3Ccircle cx='196.5' cy='59.6' r='1.0' fill='%23ffffff' fill-opacity='.85'/%3E%3Ccircle cx='196.5' cy='59.6' r='3.0' fill='%239ec5ff' fill-opacity='.12'/%3E%3Ccircle cx='97.1' cy='29.0' r='1.2' fill='%23ffffff' fill-opacity='.85'/%3E%3Ccircle cx='97.1' cy='29.0' r='3.5999999999999996' fill='%239ec5ff' fill-opacity='.12'/%3E%3Ccircle cx='203.0' cy='190.5' r='1.0' fill='%23ffffff' fill-opacity='.85'/%3E%3Ccircle cx='203.0' cy='190.5' r='3.0' fill='%239ec5ff' fill-opacity='.12'/%3E%3Ccircle cx='308.7' cy='209.3' r='1.2' fill='%23ffffff' fill-opacity='.85'/%3E%3Ccircle cx='308.7' cy='209.3' r='3.5999999999999996' fill='%239ec5ff' fill-opacity='.12'/%3E%3Ccircle cx='208.0' cy='199.4' r='1.2' fill='%23ffffff' fill-opacity='.85'/%3E%3Ccircle cx='208.0' cy='199.4' r='3.5999999999999996' fill='%239ec5ff' fill-opacity='.12'/%3E%3Ccircle cx='20.2' cy='11.4' r='0.9' fill='%23ffffff' fill-opacity='.85'/%3E%3Ccircle cx='20.2' cy='11.4' r='2.7' fill='%239ec5ff' fill-opacity='.12'/%3E%3Ccircle cx='191.9' cy='249.0' r='1.0' fill='%23ffffff' fill-opacity='.85'/%3E%3Ccircle cx='191.9' cy='249.0' r='3.0' fill='%239ec5ff' fill-opacity='.12'/%3E%3Ccircle cx='141.0' cy='269.6' r='1.2' fill='%23ffffff' fill-opacity='.85'/%3E%3Ccircle cx='141.0' cy='269.6' r='3.5999999999999996' fill='%239ec5ff' fill-opacity='.12'/%3E%3Ccircle cx='74.8' cy='94.1' r='0.9' fill='%23ffffff' fill-opacity='.85'/%3E%3Ccircle cx='74.8' cy='94.1' r='2.7' fill='%239ec5ff' fill-opacity='.12'/%3E%3C/svg%3E");--ring-r:min(38vw,30vh)}
+html{background:#050a1c}
+body{isolation:isolate;background:#050a1c}
+body::before,body::after,main::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none}
+body::before{background:
+  radial-gradient(circle at 50% 34%,rgba(0,0,0,0) calc(var(--ring-r) - 18px),rgba(150,190,255,.05) calc(var(--ring-r) - 4px),
+    rgba(190,215,255,.34) var(--ring-r),rgba(150,190,255,.06) calc(var(--ring-r) + 4px),rgba(0,0,0,0) calc(var(--ring-r) + 20px)),
+  radial-gradient(circle at 50% 34%,rgba(90,140,255,.10),rgba(90,140,255,0) var(--ring-r)),
+  var(--sky-stars),
+  linear-gradient(180deg,#03061a 0%,#061030 30%,#0b1a4c 50%,#102466 62%,#0d1d58 100%)}
+main::before{background:
+  var(--sky-twinkle),
+  radial-gradient(ellipse 70% 14% at 22% 46%,rgba(80,130,255,.28),rgba(80,130,255,0) 100%),
+  radial-gradient(ellipse 60% 12% at 78% 40%,rgba(120,170,255,.20),rgba(120,170,255,0) 100%),
+  radial-gradient(ellipse 90% 16% at 50% 55%,rgba(56,189,248,.14),rgba(56,189,248,0) 100%),
+  radial-gradient(ellipse 50% 10% at 10% 36%,rgba(150,190,255,.14),rgba(150,190,255,0) 100%),
+  radial-gradient(ellipse 75% 20% at 60% 50%,rgba(40,90,220,.22),rgba(40,90,220,0) 100%);
+  will-change:transform,opacity;animation:sky-drift 60s ease-in-out infinite alternate}
+body::after{background:
+  url("img/bg-grain.png") 0 0/160px 160px repeat,
+  radial-gradient(ellipse 48% 5% at 22% 66%,rgba(150,185,255,.22),rgba(150,185,255,0) 100%),
+  radial-gradient(ellipse 40% 4% at 74% 75%,rgba(150,185,255,.18),rgba(150,185,255,0) 100%),
+  radial-gradient(ellipse 88% 17% at 62% 119%,#122a80 0%,#11277a 94%,rgba(120,160,255,.42) 98.2%,rgba(120,160,255,0) 100%),
+  radial-gradient(ellipse 72% 30% at 90% 106%,#183392 0%,#17318e 93%,rgba(130,170,255,.45) 97.6%,rgba(130,170,255,.48) 98.4%,rgba(130,170,255,0) 100%),
+  radial-gradient(ellipse 78% 34% at 16% 109%,#1b3a9e 0%,#193698 93%,rgba(135,175,255,.45) 97.6%,rgba(135,175,255,.48) 98.4%,rgba(135,175,255,0) 100%),
+  radial-gradient(ellipse 100% 26% at 48% 114%,#1f409b 0%,#1d3d96 92%,rgba(140,180,255,.40) 97.4%,rgba(140,180,255,.44) 98.4%,rgba(140,180,255,0) 100%),
+  radial-gradient(ellipse 80% 24% at 50% 74%,rgba(30,66,180,.55),rgba(30,66,180,0) 100%),
+  linear-gradient(180deg,rgba(13,29,88,0) 42%,rgba(16,36,110,.55) 58%,#11267a 72%,#0c1c5e 100%);
+  -webkit-mask:linear-gradient(180deg,transparent 40%,#000 60%);mask:linear-gradient(180deg,transparent 40%,#000 60%)}
+@keyframes sky-drift{from{transform:translate3d(-1.2%,0,0) scale(1.02);opacity:.86}to{transform:translate3d(1.2%,.6%,0) scale(1.04);opacity:1}}
+@media (prefers-reduced-motion:reduce){main::before{animation:none;transform:none;opacity:1}}
+/* the sections let the scene through; a soft navy scrim keeps body copy readable over the dunes */
+.hero{background:transparent}
+.hero-text{position:relative}
+.hero-text::before{content:"";position:absolute;z-index:-1;inset:-48px -70px -56px;pointer-events:none;
+  background:radial-gradient(ellipse 72% 68% at 46% 54%,rgba(4,9,28,.66),rgba(4,9,28,.34) 48%,rgba(4,9,28,.10) 74%,rgba(4,9,28,0) 100%)}
+.impact{background:rgba(6,12,32,.38)}
+#programmes,#ux,.section-alt,#motion,#skills{background:rgba(5,10,26,.47)}
+.contact{background:rgba(5,10,26,.46)}
+.footer{background:rgba(3,6,15,.72)}
