@@ -1,2 +1,2 @@
-Clash Display (ClashDisplay-600.woff2, ClashDisplay-700.woff2): by Indian Type Foundry, distributed free by Fontshare (https://www.fontshare.com/fonts/clash-display) under the ITF Free Font License, which permits self-hosting for personal and commercial web use.
+Playfair Display (PlayfairDisplay-latin.woff2, PlayfairDisplay-Italic-latin.woff2; variable weight 400-900, latin subset): by Claus Eggers Sørensen, SIL Open Font License 1.1 (https://fonts.google.com/specimen/Playfair+Display, https://github.com/clauseggers/Playfair), served subset from Google Fonts.
 Inter (Inter-400/600/700/800.woff2, latin subset): by Rasmus Andersson, SIL Open Font License 1.1 (https://rsms.me/inter/), served subset from Google Fonts.

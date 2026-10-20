@@ -570,32 +570,59 @@ h1{color:#bfe3ff;background:linear-gradient(100deg,#ffffff 0%,#dbeeff 40%,#7dd3f
   .js .reveal,.js .reveal.is-in{scale:1;transition:none}
 }
 
-/* ===== typography (his ask, 20 Oct 3:46 AM): bigger section headings in ONE elegant display face (Clash Display),
-   body in Inter, both self-hosted (fonts/, licences in fonts/LICENSES.txt), font-display swap ===== */
-@font-face{font-family:"Clash Display";src:url("fonts/ClashDisplay-700.woff2") format("woff2");font-weight:700;font-style:normal;font-display:swap}
-@font-face{font-family:"Clash Display";src:url("fonts/ClashDisplay-600.woff2") format("woff2");font-weight:600;font-style:normal;font-display:swap}
+/* ===== typography (his asks, 20 Oct 3:46 AM and 4:11 AM): big section headings in ONE elegant display face,
+   now Playfair Display (variable 400-900 + italic, self-hosted in fonts/, licences in fonts/LICENSES.txt),
+   body in Inter (self-hosted), font-display swap ===== */
+@font-face{font-family:"Playfair Display";src:url("fonts/PlayfairDisplay-latin.woff2") format("woff2");font-weight:400 900;font-style:normal;font-display:swap}
+@font-face{font-family:"Playfair Display";src:url("fonts/PlayfairDisplay-Italic-latin.woff2") format("woff2");font-weight:400 900;font-style:italic;font-display:swap}
 @font-face{font-family:"Inter";src:url("fonts/Inter-400.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
 @font-face{font-family:"Inter";src:url("fonts/Inter-600.woff2") format("woff2");font-weight:600;font-style:normal;font-display:swap}
 @font-face{font-family:"Inter";src:url("fonts/Inter-700.woff2") format("woff2");font-weight:700;font-style:normal;font-display:swap}
 @font-face{font-family:"Inter";src:url("fonts/Inter-800.woff2") format("woff2");font-weight:800;font-style:normal;font-display:swap}
 body{font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
-h1,h2,h3,.showcase-h,.brand{font-family:"Clash Display","Inter",system-ui,sans-serif;font-weight:700;letter-spacing:-.015em}
-h1{font-size:clamp(3rem,10vw,5.6rem);line-height:1.02}
-h2{font-size:clamp(2.4rem,6vw,4.5rem);line-height:1.04;margin-bottom:6px;
-  background:linear-gradient(100deg,#ffffff 0%,#e3f1ff 45%,#8fd4ff 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:#e6f2ff;
+h1,h2,h3,.showcase-h,.brand{font-family:"Playfair Display",Georgia,"Times New Roman",serif;font-weight:700;letter-spacing:-.012em;font-feature-settings:"kern","liga","lnum"}
+h1{font-size:clamp(3rem,10vw,5.6rem);line-height:1.04;font-weight:800;letter-spacing:-.018em;--h-grad:linear-gradient(100deg,#ffffff 0%,#dbeeff 40%,#7dd3fc 100%)}
+h2{font-size:clamp(2.4rem,6vw,4.5rem);line-height:1.08;margin-bottom:6px;letter-spacing:-.015em;
+  --h-grad:linear-gradient(100deg,#ffffff 0%,#e3f1ff 45%,#8fd4ff 100%);background:var(--h-grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:#e6f2ff;
   filter:drop-shadow(0 0 14px rgba(56,189,248,.32)) drop-shadow(0 2px 2px rgba(0,0,0,.25))}
 .contact h2{text-shadow:none}
-h3,.showcase-h{font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:600;letter-spacing:-.01em}
+h3,.showcase-h{font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:600;letter-spacing:-.005em;line-height:1.22}
 .cs-body h3{font-size:clamp(1.5rem,3.4vw,2rem)}
-.panel h3{font-size:1.45rem}
+.panel h3{font-size:1.5rem}
 .case-head h3{font-size:clamp(1.45rem,3vw,1.85rem)}
-.showcase-h{font-size:clamp(2rem,5vw,3.2rem);font-weight:700;
-  background:linear-gradient(100deg,#ffffff 0%,#e3f1ff 45%,#8fd4ff 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:#e6f2ff;
+.showcase-h{font-size:clamp(2rem,5vw,3.2rem);font-weight:700;line-height:1.1;letter-spacing:-.012em;
+  --h-grad:linear-gradient(100deg,#ffffff 0%,#e3f1ff 45%,#8fd4ff 100%);background:var(--h-grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:#e6f2ff;
   filter:drop-shadow(0 0 12px rgba(56,189,248,.28))}
+h1 em,h2 em,h3 em{font-style:italic;font-weight:inherit}
 .section-intro{margin-top:14px}
-.brand{font-weight:700;font-size:1.3rem}
+.brand{font-weight:700;font-size:1.3rem;letter-spacing:0}
 .eyebrow{font-family:"Inter",system-ui,sans-serif}
-.impact .facts strong{font-family:"Clash Display","Inter",system-ui,sans-serif;font-weight:700}
-.facts strong{font-family:"Clash Display","Inter",system-ui,sans-serif}
+.impact .facts strong{font-family:"Playfair Display",Georgia,serif;font-weight:700;font-feature-settings:"lnum","tnum"}
+.facts strong{font-family:"Playfair Display",Georgia,serif;font-feature-settings:"lnum","tnum"}
 .proto-count{font-family:"Inter",system-ui,sans-serif}
 @media (max-width:420px){h1{font-size:clamp(2.6rem,12vw,3.2rem)}h2{font-size:2.15rem}.showcase-h{font-size:1.8rem}}
+
+/* ===== heading text animation (his ask, 20 Oct 4:11 AM): headings.js splits each heading into words
+   (letters for a one-word heading) that rise and fade in with a stagger when the heading scrolls into view, once,
+   followed by a single soft light sweep across the glyphs. transform/opacity only for the rise; the heading keeps
+   its full text for screen readers (aria-label), the split spans are aria-hidden. Static under reduced motion:
+   headings.js does not split there, so the plain CSS above stands. ===== */
+.tx-split .tw{display:inline-block;white-space:pre;text-decoration:inherit;
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  background-image:linear-gradient(100deg,rgba(255,255,255,0) 38%,rgba(255,255,255,.9) 50%,rgba(255,255,255,0) 62%),var(--h-grad,linear-gradient(currentColor,currentColor));
+  background-size:var(--bw,100%) 100%,var(--bw,100%) 100%;background-repeat:no-repeat,no-repeat;
+  background-position:calc(var(--bx,0px) - var(--bw,100%)) 0,var(--bx,0px) 0}
+.js .tx-split{background:none;-webkit-text-fill-color:currentColor}
+.js h2.tx-split,.js .showcase-h.tx-split,.js h1.tx-split{filter:none}
+.js h2.tx-split .tw{filter:drop-shadow(0 0 14px rgba(56,189,248,.32)) drop-shadow(0 2px 2px rgba(0,0,0,.25))}
+.js .showcase-h.tx-split .tw{filter:drop-shadow(0 0 12px rgba(56,189,248,.28))}
+.js h1.tx-split .tw{filter:drop-shadow(0 0 16px rgba(56,189,248,.42)) drop-shadow(0 2px 2px rgba(0,0,0,.2))}
+.js .tx-split .tw{opacity:0;transform:translate3d(0,.55em,0);
+  transition:opacity .5s ease-out var(--td,0ms),transform .72s cubic-bezier(.2,.75,.2,1) var(--td,0ms)}
+.js .tx-split.is-on .tw{opacity:1;transform:translate3d(0,0,0);
+  animation:tx-shine .9s cubic-bezier(.4,0,.3,1) var(--ts,.5s) 1 both}
+@keyframes tx-shine{from{background-position:calc(var(--bx,0px) - var(--bw,100%)) 0,var(--bx,0px) 0}
+  to{background-position:calc(var(--bx,0px) + var(--bw,100%)) 0,var(--bx,0px) 0}}
+.js .hero h1.tx-split{animation:none}
+@media (prefers-reduced-motion:reduce){.js .tx-split .tw{opacity:1;transform:none;transition:none;animation:none}}
+
