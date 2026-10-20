@@ -624,5 +624,7 @@ h1 em,h2 em,h3 em{font-style:italic;font-weight:inherit}
 @keyframes tx-shine{from{background-position:calc(var(--bx,0px) - var(--bw,100%)) 0,var(--bx,0px) 0}
   to{background-position:calc(var(--bx,0px) + var(--bw,100%)) 0,var(--bx,0px) 0}}
 .js .hero h1.tx-split{animation:none}
+/* a split heading's entrance is the word animation itself: it opts out of the block reveal's fade/slide */
+.js .tx-split.reveal,.js .tx-split.reveal.is-in{opacity:1;translate:0 0;scale:1;transition:none}
 @media (prefers-reduced-motion:reduce){.js .tx-split .tw{opacity:1;transform:none;transition:none;animation:none}}
 
