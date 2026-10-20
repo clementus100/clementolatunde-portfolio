@@ -400,20 +400,19 @@ h1{color:#bfe3ff;background:linear-gradient(100deg,#ffffff 0%,#dbeeff 40%,#7dd3f
 /* ===== upgrades (20 Oct 2026): halo, impact strip, motion reels, Calmly gallery, StepWise prototype, contact channels ===== */
 .visually-hidden{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
 
-/* 6. halo: a soft circular rainbow behind the portrait (sun-halo), conic ring + wide blurred glow, slow spin + gentle breathe */
-.hero-photo{position:relative;isolation:isolate}
-.hero-photo img{position:relative;z-index:1}
-.halo{position:absolute;inset:-18%;border-radius:50%;pointer-events:none;z-index:0}
-.halo-ring,.halo-glow{position:absolute;inset:0;border-radius:50%;
-  background:conic-gradient(from 0deg,#ff6b6b 0%,#ffa94d 14%,#ffe066 28%,#8ce99a 42%,#66d9e8 57%,#748ffc 71%,#da77f2 86%,#ff6b6b 100%);will-change:transform}
-.halo-ring{-webkit-mask:radial-gradient(circle,transparent 57%,#000 64%,#000 72%,transparent 82%);mask:radial-gradient(circle,transparent 57%,#000 64%,#000 72%,transparent 82%);
-  filter:blur(5px);opacity:.78;animation:halo-spin 28s linear infinite}
-.halo-glow{inset:-14%;-webkit-mask:radial-gradient(circle,transparent 42%,#000 56%,transparent 74%);mask:radial-gradient(circle,transparent 42%,#000 56%,transparent 74%);
-  filter:blur(26px);opacity:.42;animation:halo-breathe 7s ease-in-out infinite alternate}
-@keyframes halo-spin{to{transform:rotate(360deg)}}
-@keyframes halo-breathe{from{opacity:.32;transform:scale(.96) rotate(0deg)}to{opacity:.5;transform:scale(1.05) rotate(-40deg)}}
-.hero-photo img{box-shadow:0 0 0 1px rgba(255,255,255,.35),0 0 44px rgba(56,189,248,.30),0 18px 44px rgba(0,0,0,.55)}
-@media (max-width:859px){.hero-photo{margin:26px 0 0 16px}}
+/* 6. halo (v2, his change 20 Oct 3:36 AM): no ring on the photo; the halo is part of the BACKGROUND, a large very soft
+   rainbow sun-halo ring (red inside to violet outside), heavily blurred and low-opacity, partly off-screen top-right
+   behind the hero, with a smaller fainter one behind the UX case studies. Never over text; drift is transform-only. */
+.aurora{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+.aurora span,#ux::before{position:absolute;border-radius:50%;aspect-ratio:1;pointer-events:none;will-change:transform;
+  background:radial-gradient(circle at 50% 50%,rgba(255,255,255,0) 36%,rgba(255,107,107,.9) 44%,rgba(255,169,77,.95) 49%,rgba(255,224,102,.95) 54%,rgba(140,233,154,.9) 59%,rgba(102,217,232,.9) 64%,rgba(116,143,252,.9) 69%,rgba(218,119,242,.85) 74%,rgba(218,119,242,0) 82%)}
+.aurora-a{width:min(1180px,160vw);right:-26%;top:-56%;opacity:.4;filter:blur(22px);animation:aurora-drift 54s ease-in-out infinite alternate}
+.aurora-b{width:min(620px,90vw);left:-36%;bottom:-58%;opacity:.13;filter:blur(20px);animation:aurora-drift 66s ease-in-out -24s infinite alternate-reverse}
+#ux{overflow:hidden;isolation:isolate}
+#ux::before{content:"";z-index:-1;width:min(980px,130vw);right:-44%;top:-28%;opacity:.18;filter:blur(26px);animation:aurora-drift 72s ease-in-out -10s infinite alternate}
+.lede{color:#c6d3ec}
+@keyframes aurora-drift{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(-36px,28px,0) scale(1.05)}}
+@media (max-width:859px){.aurora-a{width:175vw;right:-62%;top:-34%;opacity:.32;filter:blur(16px)}.aurora-b{display:none}#ux::before{right:-95%;top:-10%;opacity:.16;filter:blur(18px)}}
 
 /* 3. impact strip: a full-width luminous band under the hero, numbers count up when it scrolls into view */
 .impact{position:relative;padding:22px 0;background:
@@ -509,8 +508,7 @@ h1{color:#bfe3ff;background:linear-gradient(100deg,#ffffff 0%,#dbeeff 40%,#7dd3f
 
 /* reduced motion: the halo is static, reels and swaps do not animate (the video element stays paused; JS does not play it) */
 @media (prefers-reduced-motion:reduce){
-  .halo-ring,.halo-glow{animation:none}
-  .halo-glow{opacity:.42;transform:none}
+  .aurora span,#ux::before{animation:none;transform:none}
   .ux-cover .reel{transition:none}
   .ph img,.channel,.gal-chip,.gal-arrow,.proto-dots i{transition:none}
   .ph:hover img,.channel:hover{transform:none}
