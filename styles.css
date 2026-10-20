@@ -628,3 +628,31 @@ h1 em,h2 em,h3 em{font-style:italic;font-weight:inherit}
 .js .tx-split.reveal,.js .tx-split.reveal.is-in{opacity:1;translate:0 0;scale:1;transition:none}
 @media (prefers-reduced-motion:reduce){.js .tx-split .tw{opacity:1;transform:none;transition:none;animation:none}}
 
+/* Motion Graphics section (20 Oct 2026, his ask: "my motion graphics, put it on my portfolio too, in a different section").
+   Same dark-glass cards as the UX case studies; 16:9 promos wide, 9:16 cuts side by side on desktop and stacked on mobile.
+   Nothing autoplays: every video is muted with controls and preload="none", the poster stands until the visitor presses play. */
+#motion{background:
+  radial-gradient(ellipse 55% 40% at 0% 0%,rgba(77,163,255,.16),rgba(77,163,255,0) 60%),
+  radial-gradient(ellipse 50% 45% at 100% 100%,rgba(56,189,248,.10),rgba(56,189,248,0) 60%),
+  linear-gradient(180deg,#0a1430 0%,#0c1838 100%)}
+#motion .eyebrow{color:var(--azure-2)}
+#motion h2{color:#f2f6ff}
+#motion .section-intro{color:var(--muted-d)}
+.mg-grid{display:grid;gap:18px;margin-top:26px}
+.mg-row{display:grid;gap:18px}
+.mg-media{position:relative;background:#060b1a;border-bottom:1px solid rgba(125,211,252,.18)}
+.mg-16x9{aspect-ratio:16/9}
+.mg-9x16{aspect-ratio:9/16}
+.mg-video{display:block;width:100%;height:100%;object-fit:contain;background:#060b1a}
+.mg-video:focus-visible{outline:3px solid var(--azure-2);outline-offset:-3px}
+.mg-desc{margin:10px 0 12px;font-size:.95rem;color:var(--text-2)}
+.mg-meta li{font-size:.82rem;padding:5px 11px}
+.mg-sound{display:inline-flex;align-items:center;gap:8px;margin-top:12px;font:inherit;font-size:.88rem;font-weight:700;color:#bfe3ff;background:rgba(14,28,64,.55);border:2px solid rgba(125,211,252,.55);border-radius:999px;padding:8px 14px;cursor:pointer;box-shadow:0 0 14px rgba(56,189,248,.14)}
+.mg-sound:hover,.mg-sound:focus-visible{background:rgba(56,189,248,.18);color:#f2f6ff;outline:none}
+.mg-sound[aria-pressed="true"]{background:var(--azure);color:#071a3d;border-color:var(--azure)}
+.mg-card .ux-body{padding:18px 20px 22px}
+@media (min-width:700px){
+  .mg-grid{grid-template-columns:repeat(2,1fr)}
+  .mg-row{grid-column:1/-1;grid-template-columns:repeat(3,1fr)}
+}
+@media (min-width:700px) and (max-width:859px){.mg-row{grid-template-columns:repeat(2,1fr)}}
