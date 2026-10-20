@@ -7,8 +7,10 @@
   if (!('IntersectionObserver' in window)) return; // old browser: plain page, everything visible
   root.classList.add('js');
 
-  var REVEAL = '.section > .wrap > .eyebrow, .section > .wrap > h2, .section-intro, .cs-card, .case, .ux-card, .panel, .contact-inner, .sw-hint, .sw-board, ' +
-               '.hero .kicker, .hero h1, .hero .role, .hero .lede, .hero .cta, .facts li, .sw-meta, .sw-note';
+  var REVEAL = '.section > .wrap > .eyebrow, .section > .wrap > h2, .section-intro, .cs-card, .case, .ux-card, .panel, .contact .eyebrow, .contact h2, .contact-inner > p, .channels li, .contact .cta, .sw-hint, .sw-board, ' +
+               '.hero .kicker, .hero h1, .hero .role, .hero .lede, .hero .cta, .facts li, .sw-meta, .sw-note, ' +
+               // 20 Oct 2026 upgrades: every new block reveals too (children staggered by the --d step below)
+               '.impact .facts li, .showcase .eyebrow, .showcase-h, .showcase-intro, .gal-nav, .gal-shell, .proto-now, .proto-ctl, .proto-dots, .proto-phone, .sw-reel';
   var raf = window.requestAnimationFrame || function (f) { return setTimeout(f, 16); };
 
   function ready(fn) { doc.readyState === 'loading' ? doc.addEventListener('DOMContentLoaded', fn) : fn(); }
