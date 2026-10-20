@@ -747,3 +747,46 @@ body::after{background:
 #programmes,#ux,.section-alt,#motion,#skills{background:rgba(5,10,26,.47)}
 .contact{background:rgba(5,10,26,.46)}
 .footer{background:rgba(3,6,15,.72)}
+
+/* ===== cobalt shine (20 Oct 2026, his second reference: "blend with this color too" — a brushed electric-cobalt
+   metal lit from one bright point, with light rays fanning out and fine concentric brushing). Still CSS only, no
+   image of either reference. The sky's mid-tones and the mist move to that richer cobalt (#1747D6 → #1F5BFF family)
+   while the top and the edges keep the deep navy (an edge vignette on the sky layer), so it stays dark and premium.
+   main::after is a fourth fixed layer: one soft conic light sweep, two sparse repeating ray fans (≤ 12 % opacity) and
+   a fine concentric brushed-metal hairline texture (≈ 4 %), all radiating from the ring's centre behind the hero and
+   masked to a soft disc so they die away toward the edges. It breathes very slowly (opacity only) and is static under
+   prefers-reduced-motion. Section scrims are a touch deeper so body copy stays AA over the brighter cobalt. ===== */
+:root{--shine-x:50%;--shine-y:34%}
+@media (max-width:720px){:root{--shine-y:22%}} /* phones: the bright point sits behind the sphere halo, above the kicker */
+body::before{background:
+  radial-gradient(ellipse 118% 92% at 50% 42%,rgba(3,6,24,0) 52%,rgba(3,6,24,.42) 82%,rgba(2,4,18,.72) 100%),
+  radial-gradient(circle at 50% 34%,rgba(0,0,0,0) calc(var(--ring-r) - 18px),rgba(150,190,255,.05) calc(var(--ring-r) - 4px),
+    rgba(190,215,255,.34) var(--ring-r),rgba(150,190,255,.06) calc(var(--ring-r) + 4px),rgba(0,0,0,0) calc(var(--ring-r) + 20px)),
+  radial-gradient(circle at 50% 34%,rgba(120,165,255,.14),rgba(90,140,255,0) var(--ring-r)),
+  var(--sky-stars),
+  radial-gradient(ellipse 85% 62% at var(--shine-x) var(--shine-y),rgba(31,91,255,.30),rgba(23,71,214,.14) 48%,rgba(23,71,214,0) 100%),
+  linear-gradient(180deg,#03061a 0%,#06123a 24%,#0d2470 44%,#1747d6 62%,#1a4fe0 72%,#123aa8 86%,#0c2a86 100%)}
+main::before{background:
+  var(--sky-twinkle),
+  radial-gradient(ellipse 70% 14% at 22% 46%,rgba(31,91,255,.34),rgba(31,91,255,0) 100%),
+  radial-gradient(ellipse 60% 12% at 78% 40%,rgba(90,150,255,.24),rgba(90,150,255,0) 100%),
+  radial-gradient(ellipse 90% 16% at 50% 55%,rgba(56,160,255,.16),rgba(56,160,255,0) 100%),
+  radial-gradient(ellipse 50% 10% at 10% 36%,rgba(140,185,255,.16),rgba(140,185,255,0) 100%),
+  radial-gradient(ellipse 75% 20% at 60% 50%,rgba(23,71,214,.30),rgba(23,71,214,0) 100%)}
+main::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+  repeating-radial-gradient(circle at var(--shine-x) var(--shine-y),rgba(205,225,255,.045) 0 1px,rgba(0,0,0,0) 1px 6px),
+  repeating-conic-gradient(from -11deg at var(--shine-x) var(--shine-y),rgba(165,200,255,0) 0deg,rgba(165,200,255,.11) 2.6deg,rgba(165,200,255,0) 6.4deg,rgba(165,200,255,0) 17deg),
+  repeating-conic-gradient(from 6deg at var(--shine-x) var(--shine-y),rgba(140,185,255,0) 0deg,rgba(140,185,255,.08) 4.5deg,rgba(140,185,255,0) 11deg,rgba(140,185,255,0) 29deg),
+  conic-gradient(from 140deg at var(--shine-x) var(--shine-y),rgba(31,91,255,0) 0deg,rgba(100,150,255,.16) 46deg,rgba(31,91,255,0) 96deg,
+    rgba(31,91,255,0) 150deg,rgba(110,160,255,.13) 206deg,rgba(31,91,255,0) 262deg,rgba(31,91,255,0) 360deg),
+  radial-gradient(circle at var(--shine-x) var(--shine-y),rgba(200,222,255,.15),rgba(120,165,255,.08) 16%,rgba(31,91,255,0) 52%);
+  -webkit-mask:radial-gradient(ellipse 78% 72% at var(--shine-x) var(--shine-y),#000 0,rgba(0,0,0,.8) 32%,rgba(0,0,0,.28) 68%,transparent 100%);
+  mask:radial-gradient(ellipse 78% 72% at var(--shine-x) var(--shine-y),#000 0,rgba(0,0,0,.8) 32%,rgba(0,0,0,.28) 68%,transparent 100%);
+  will-change:opacity;animation:shine-breathe 16s ease-in-out infinite alternate}
+@keyframes shine-breathe{from{opacity:.78}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){main::after{animation:none;opacity:1}}
+.impact{background:rgba(5,10,26,.46)}
+#programmes,#ux,.section-alt,#motion,#skills{background:rgba(4,9,24,.55)}
+.contact{background:rgba(4,9,24,.54)}
+.hero-text::before{inset:-56px -70px -56px;background:radial-gradient(ellipse 74% 70% at 46% 50%,rgba(4,9,28,.76),rgba(4,9,28,.50) 44%,rgba(4,9,28,.18) 74%,rgba(4,9,28,0) 100%)}
