@@ -692,6 +692,8 @@ h1 em,h2 em,h3 em{font-style:italic;font-weight:inherit}
   .mg-row{grid-column:1/-1;grid-template-columns:repeat(3,1fr)}
 }
 @media (min-width:700px) and (max-width:859px){.mg-row{grid-template-columns:repeat(2,1fr)}}
+/* two vertical cuts (watch reel removed 20 Oct 2026): keep each at a third of the row, centred, so no empty column */
+@media (min-width:860px){.mg-row{grid-template-columns:repeat(2,calc((100% - 36px) / 3));justify-content:center}}
 /* five nav links now (Motion added): tighter on narrow phones so the bar never scrolls sideways */
 @media (max-width:420px){.nav ul{gap:0}.nav ul a{padding:8px 3px;font-size:.76rem}}
 @media (max-width:359px){.nav ul a{padding:8px 2px;font-size:.7rem}.brand{font-size:1.15rem}}
