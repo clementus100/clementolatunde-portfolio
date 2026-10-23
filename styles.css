@@ -685,3 +685,8 @@ h1 em,h2 em,h3 em{font-style:italic;font-weight:inherit}
 .ux-card .cs-chips{margin:14px 0 0}
 .mg-credit{margin:10px 0 0;font-size:.78rem;line-height:1.45;color:var(--text-2);opacity:.85}
 .mg-credit a{color:inherit;text-decoration:underline;text-underline-offset:2px}
+
+/* VANTA (23 Oct 2026): small button that swaps to the no-VO cut, sized to sit beside the sound toggle */
+.mg-alt{display:inline-flex;align-items:center;margin:12px 0 0 6px;font:inherit;font-size:.82rem;font-weight:700;color:#7dd3fc;background:transparent;border:1px solid rgba(125,211,252,.45);border-radius:999px;padding:7px 12px;cursor:pointer}
+.mg-alt:hover,.mg-alt:focus-visible{background:rgba(56,189,248,.14);color:#f2f6ff;outline:none}
+.mg-alt[aria-pressed="true"]{border-color:#7dd3fc;background:rgba(56,189,248,.12)}
