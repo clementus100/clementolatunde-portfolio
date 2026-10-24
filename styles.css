@@ -690,3 +690,16 @@ h1 em,h2 em,h3 em{font-style:italic;font-weight:inherit}
 .mg-alt{display:inline-flex;align-items:center;margin:12px 0 0 6px;font:inherit;font-size:.82rem;font-weight:700;color:#7dd3fc;background:transparent;border:1px solid rgba(125,211,252,.45);border-radius:999px;padding:7px 12px;cursor:pointer}
 .mg-alt:hover,.mg-alt:focus-visible{background:rgba(56,189,248,.14);color:#f2f6ff;outline:none}
 .mg-alt[aria-pressed="true"]{border-color:#7dd3fc;background:rgba(56,189,248,.12)}
+
+/* Monogram (24 Oct 2026): Clement asked for his photo to be taken off; a "CO" mark sits where the photo was, same size,
+   ring and glow, and keeps the .hero-photo wrapper so the orb, parallax and entrance are unchanged. */
+.hero-photo .monogram{width:180px;height:180px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(circle at 34% 28%,#1b2c52 0%,#111d38 45%,#0b1220 100%);
+  border:5px solid rgba(125,211,252,.55);
+  box-shadow:0 0 0 1px rgba(56,189,248,.45),0 0 44px rgba(56,189,248,.38),0 18px 44px rgba(0,0,0,.55),inset 0 0 28px rgba(125,211,252,.16),inset 0 1px 0 rgba(242,246,255,.10)}
+.hero-photo .monogram span{font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-weight:800;font-size:66px;line-height:1;
+  letter-spacing:-.035em;color:#f2f6ff;margin:0 0 .04em .02em;text-shadow:0 0 18px rgba(125,211,252,.35);user-select:none}
+@media (min-width:860px){
+  .hero-photo .monogram{width:330px;height:330px}
+  .hero-photo .monogram span{font-size:120px}
+}
