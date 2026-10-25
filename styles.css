@@ -703,3 +703,15 @@ h1 em,h2 em,h3 em{font-style:italic;font-weight:inherit}
   .hero-photo .monogram{width:330px;height:330px}
   .hero-photo .monogram span{font-size:120px}
 }
+
+/* New cards (25 Oct 2026): three 9:16 Lily Bikini fashion ads side by side on desktop, and the Rivals of the Night
+   documentary short full width below them. The grid moves to 6 tracks so the existing cards (span 3) keep exactly
+   the same two-column size; on phones every card stacks and a 9:16 video is capped to the screen height. */
+.mg-9x16{aspect-ratio:9/16;max-height:78vh}
+@media (min-width:700px){
+  .mg-grid{grid-template-columns:repeat(6,1fr)}
+  .mg-grid>.mg-card{grid-column:span 3}
+  .mg-grid>.mg-card-9x16{grid-column:span 2}
+  .mg-grid>.mg-card-wide{grid-column:1/-1}
+  .mg-card-9x16 .mg-9x16{max-height:none}
+}
