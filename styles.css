@@ -715,3 +715,23 @@ h1 em,h2 em,h3 em{font-style:italic;font-weight:inherit}
   .mg-grid>.mg-card-wide{grid-column:1/-1}
   .mg-card-9x16 .mg-9x16{max-height:none}
 }
+
+/* Sections (26 Oct 2026, his ask: "let all the ads i do be under product ads section" and "motion design should be under
+   motion designs"): the old Motion Graphics section is split into Product Ads (#product-ads) and Motion Design (#motion-design).
+   Both keep the Motion section's dark-glass look; the old #motion anchor stays as an empty marker so old links still land. */
+.mg-section{background:
+  radial-gradient(ellipse 55% 40% at 0% 0%,rgba(77,163,255,.16),rgba(77,163,255,0) 60%),
+  radial-gradient(ellipse 50% 45% at 100% 100%,rgba(56,189,248,.10),rgba(56,189,248,0) 60%),
+  linear-gradient(180deg,#0a1430 0%,#0c1838 100%)}
+#motion-design{background:
+  radial-gradient(ellipse 55% 40% at 100% 0%,rgba(77,163,255,.14),rgba(77,163,255,0) 60%),
+  radial-gradient(ellipse 50% 45% at 0% 100%,rgba(56,189,248,.10),rgba(56,189,248,0) 60%),
+  linear-gradient(180deg,#0c1838 0%,#0a1430 100%);border-top:1px solid rgba(125,211,252,.10)}
+.mg-section .eyebrow{color:var(--azure-2)}
+.mg-section h2{color:#f2f6ff}
+.mg-section .section-intro{color:var(--muted-d)}
+.anchor-compat{height:0;overflow:hidden}
+@media (max-width:600px){.nav-long{display:none}}
+/* six nav links now (Product Ads + Motion): a touch tighter on narrow phones so the bar never scrolls sideways */
+@media (max-width:420px){.nav ul a{padding:8px 2px;font-size:.72rem}}
+@media (max-width:359px){.nav ul a{padding:8px 1px;font-size:.66rem}}
