@@ -57,3 +57,29 @@
     });
   });
 })();
+
+/* Multi-part film (30 Oct 2026, Ogunmola Parts 1-3): part buttons swap the card's one video (source + poster) and
+   show that part's credit line; the sound toggle above keeps working on the same video element. */
+(function () {
+  [].slice.call(document.querySelectorAll('.mg-parts-card')).forEach(function (card) {
+    var v = card.querySelector('video.mg-video');
+    var srcEl = v && v.querySelector('source');
+    var btns = [].slice.call(card.querySelectorAll('.mg-part'));
+    var credits = [].slice.call(card.querySelectorAll('[data-part-credit]'));
+    if (!v || !srcEl || !btns.length) return;
+    btns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        if (btn.getAttribute('aria-pressed') === 'true') return;
+        var wasPlaying = !v.paused, muted = v.muted;
+        btns.forEach(function (b) { b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'); });
+        srcEl.setAttribute('src', btn.getAttribute('data-src'));
+        v.setAttribute('poster', btn.getAttribute('data-poster'));
+        v.setAttribute('aria-label', v.getAttribute('aria-label').replace(/Part \d/, 'Part ' + btn.getAttribute('data-part')));
+        v.load();
+        v.muted = muted;
+        credits.forEach(function (c) { c.hidden = c.getAttribute('data-part-credit') !== btn.getAttribute('data-part'); });
+        if (wasPlaying) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+      });
+    });
+  });
+})();

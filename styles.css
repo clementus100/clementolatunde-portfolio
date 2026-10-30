@@ -746,3 +746,9 @@ h1 em,h2 em,h3 em{font-style:italic;font-weight:inherit}
   .mg-feature-9x16 .mg-9x16{max-height:none;width:100%}
   .mg-feature-9x16 .ux-body{padding:28px 30px;align-self:center}
 }
+
+/* Multi-part film card (30 Oct 2026, Ogunmola Parts 1-3): a row of part buttons above the description. */
+.mg-parts{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 4px}
+.mg-part{font:inherit;font-size:.84rem;font-weight:700;color:#bfe3ff;background:rgba(14,28,64,.55);border:1px solid rgba(125,211,252,.45);border-radius:999px;padding:8px 14px;cursor:pointer;line-height:1.2}
+.mg-part:hover,.mg-part:focus-visible{background:rgba(56,189,248,.16);color:#f2f6ff;outline:none}
+.mg-part[aria-pressed="true"]{background:var(--azure);color:#071a3d;border-color:var(--azure)}
