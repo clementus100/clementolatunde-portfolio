@@ -735,3 +735,14 @@ h1 em,h2 em,h3 em{font-style:italic;font-weight:inherit}
 /* six nav links now (Product Ads + Motion): a touch tighter on narrow phones so the bar never scrolls sideways */
 @media (max-width:420px){.nav ul a{padding:8px 2px;font-size:.72rem}}
 @media (max-width:359px){.nav ul a{padding:8px 1px;font-size:.66rem}}
+
+/* Complat motion graphics promo (30 Oct 2026): a featured 9:16 card at the top of Motion Design. On phones it stacks
+   like the other 9:16 cards (video capped to the screen height); from 700px the vertical video sits on the left at a
+   fixed width and the text fills the rest, so the card stays full width without a giant portrait video. */
+.mg-feature-9x16 .mg-9x16{margin:0 auto;max-width:100%}
+@media (min-width:700px){
+  .mg-feature-9x16{display:grid;grid-template-columns:minmax(260px,380px) 1fr;align-items:stretch}
+  .mg-feature-9x16 .mg-media{border-bottom:0;border-right:1px solid rgba(125,211,252,.18)}
+  .mg-feature-9x16 .mg-9x16{max-height:none;width:100%}
+  .mg-feature-9x16 .ux-body{padding:28px 30px;align-self:center}
+}
